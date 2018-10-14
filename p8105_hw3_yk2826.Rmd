@@ -161,3 +161,19 @@ instacart %>%
 ```
 
 There are 134 aisles in the dataset. This bar plot shows the number of items ordered across all aisles, ordered from most to least. Fresh vegetables and fresh fruits are most items ordered from while there are least items ordered from the beauty aisle, with only 287 ordered items. Because there are too many aisles, I made a horizontal instead of a vertical bar plot to make the name of the aisles more readilable.
+
+c.Make a table showing the most popular item in each of the aisles “baking ingredients”, “dog food care”, and “packaged vegetables fruits”.
+```{r popular_item}
+instacart %>% 
+  filter(aisle %in% c("baking ingredients", 
+                      "dog food care", "packaged vegetables fruits")) %>% 
+  group_by(aisle, product_name) %>% 
+  summarise(n = n()) %>% 
+  filter(min_rank(desc(n)) == 1) %>% 
+  rename(Aisle = aisle, 
+         "Product Name" = product_name,
+         "Number of orders" = n) %>% 
+  knitr::kable(digits = 1)
+```
+
+The above table shows the most popular items in the aisles “baking ingredients”, “dog food care”, and “packaged vegetables fruits”. Light Brown Sugar is the most frequently ordered item in the “baking ingredients” aisle with 499 orders. The most popular item is Snack Sticks Chicken & Rice Recipe Dog Treats in the “dog food care” aisle with 30 order and the most popular item in "packaged vegetables fruits" aisle is Organic Baby Spinach with 9784 orders.
