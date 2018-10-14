@@ -74,3 +74,23 @@ brfss_data %>%
 ```
 
 The table shows the mean and standard deviation of the proportion of “Excellent” responses across locations in NY State for the years 2002, 2006, and 2010. We can see, the proportion of “Excellent” responses was highest in 2002, then slightly declined from 2002 to 2006, and were approximately equal in 2006 and 2010. The standard deviation of the proportion of “Excellent” responses across locations in NY State declined from 2002 to 2010, which means there were less variability with respect to the proportion of “Excellent” responses in years 2006 and 2010 than in year 2002 maybe because the number of observations increased.
+
+d.For each year and state, compute the average proportion in each response category (taking the average across locations in a state). Make a five-panel plot that shows, for each response category separately, the distribution of these state-level averages over time.
+```{r response_plot}
+response_average = 
+  brfss_data %>% 
+  group_by(year, state, response) %>%
+  summarize(average = mean(data_value, na.rm = TRUE)) 
+response_average
+
+response_average %>% 
+  ggplot(aes(x = year, y = average, color = state)) + 
+     geom_line() + 
+    facet_grid(~response) + 
+    labs(
+      title = "State-level averages vs year",
+      x = "Year",
+      y = "State-level averages")
+```
+
+I used line plots because they are the most appropriate to show the trends of distribution of the average proportion in each state over time. We can see from the plots that for all states the state-level average proportions in "Very good" were the highest while the state-level average proportions in "Poor" were the lowest from 2002 to 2010. Besides, the distributions of these state-level averages for each category remains relatively constant over years, which implies that responses did not vary apparently over time.
