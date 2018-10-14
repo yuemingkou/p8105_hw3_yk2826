@@ -96,3 +96,29 @@ response_average %>%
 I used line plots because they are the most appropriate to show the trends of distribution of the average proportion in each state over time. We can see from the plots that for all states the state-level average proportions in "Very good" were the highest while the state-level average proportions in "Poor" were the lowest from 2002 to 2010. Besides, the distributions of these state-level averages for each category remains relatively constant over years, which implies that responses did not vary apparently over time.
 
 ## Problem 2
+```{r load_instacart}
+data(instacart)
+head(instacart)
+```
+The "instacart" dataset gives information about orders from the online company Instacart. The dataset contains `r nrow(instacart)` observations of `r n_distinct(instacart$user_id)` unique users, where each row in the dataset is a product from an order. There is a single order per user in this dataset.
+
+There are 15 variables in this dataset:
+
+order_id: order identifier  
+product_id: product identifier  
+add_to_cart_order: order in which each product was added to cart  
+reordered: 1 if this prodcut has been ordered by this user in the past, 0 otherwise  
+user_id: customer identifier  
+eval_set: which evaluation set this order belongs in   
+order_number: the order sequence number for this user (1 = first, n = nth)  
+order_dow: the day of the week on which the order was placed  
+order_hour_of_day: the hour of the day on which the order was placed  
+days_since_prior_order: days since the last order, capped at 30, NA if order_number = 1  
+product_name: name of the product  
+aisle_id: aisle identifier  
+department_id: department identifier  
+aisle: the name of the aisle  
+department: the name of the department
+
+Here's an illstrative example of observations:  
+The first row means that the user whose ID is 112108 ordered Bulgarian Yogurt on Thursday at 10 am in his/her fourth order and Bulgarian Yogurt was the first item he/she added to cart in this order. This prodcut has been ordered by this user in the past. There were 9 days since his/her last order. The Id of Bulgarian Yogurt is 49302. It was on yogurt aisle and the aisle's id is 120. The Bulgarian Yogurt was from dary eggs department and the Id of this department was 16. This order's Id was 1 and the order belongs in "train" evaluation set.
