@@ -16,3 +16,17 @@ theme_set(theme_bw() + theme(legend.position = "bottom"))
 ```
 
 ## Problem 1
+load and clean the BRFSS data:
+```{r clean_BRFSS}
+library(p8105.datasets)
+data(brfss_smart2010)
+
+brfss_data = 
+  brfss_smart2010 %>% 
+  janitor::clean_names() %>% 
+  rename(state = locationabbr, location = locationdesc) %>% 
+  filter(topic == "Overall Health") %>% 
+  mutate(response = factor(response, levels = 
+                             c("Excellent", "Very good", "Good", "Fair", "Poor")))
+```
+
