@@ -5,13 +5,14 @@ output: github_document
 
 ```{r setup, include=FALSE}
 library(tidyverse)
+library(patchwork)
 
 knitr::opts_chunk$set(
-  fig.width = 6,
-  fig.asp = .6,
+  fig.width = 12,
+  fig.height = 10, 
   out.width = "90%"
 )
-
 theme_set(theme_bw() + theme(legend.position = "bottom"))
 ```
 
+## Problem 1
