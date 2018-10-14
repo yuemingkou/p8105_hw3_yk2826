@@ -193,3 +193,5 @@ instacart %>%
 ```
 
 The above table shows that Coffee Ice Cream is usually order in the early afternoon at around 2pm to 3pm for every day of the week except for Friday when the ice cream is ordered earlier. Customers order pink lady apples, on average, ealiear than order Coffee Ice Cream, mostly around noon between 11am to 2pm for every day of the week except Wednesday.
+
+## Problem 3
