@@ -135,3 +135,29 @@ n_item =
 head(n_item)
 ```
 There are `r nrow(n_item)` aisles. "Fresh vegetables" and "fresh fruits" are ordered most with 150609 and 150473 ordered items respectively.
+
+b.Make a plot that shows the number of items ordered in each aisle. Order aisles sensibly, and organize your plot so others can read it.
+```{r chunk_set, include=FALSE}
+knitr::opts_chunk$set(
+  fig.width = 15,
+  fig.height = 20, 
+  out.width = "90%"
+)
+```
+
+```{r aisle_plot}
+instacart %>% 
+  group_by(aisle) %>% 
+  summarise(n_item = n()) %>% 
+  ggplot(aes(x = reorder(aisle, desc(n_item)), y = n_item)) +
+    geom_col(fill = "blue") +
+    labs(
+      title = "Number of items ordered in each aisle",
+      x = "Aisles",
+      y = "Number of items ordered") +
+  coord_flip() +
+  theme(legend.position = "none") +
+  theme(axis.text = element_text(size = 12))
+```
+
+There are 134 aisles in the dataset. This bar plot shows the number of items ordered across all aisles, ordered from most to least. Fresh vegetables and fresh fruits are most items ordered from while there are least items ordered from the beauty aisle, with only 287 ordered items. Because there are too many aisles, I made a horizontal instead of a vertical bar plot to make the name of the aisles more readilable.
