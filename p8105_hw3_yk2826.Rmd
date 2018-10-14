@@ -280,5 +280,45 @@ The above plot shows that the average maximum temperature in January had more ch
 In January, the average maximum temperature fluctuated mosltly in the range of -5 to 5 degrees (C) over the 30 years . In July, the average maximum temperature was almost steady, ranged around 25 to 30 degrees over the 30 years.  
 There are records from some stations showing as outliers. In January, there are both outliers with extremely high or extremely low records, for example the outlier in 2005 is much lower than other records. However, in July, the outliers are almost all the extremely low records, such as the outlier in 1998. The results indicate that the temperature of the area of some weather stations were quite different from most other stations. It is possible that in some wheather stations where the data collected from, the maxium temperature in July were relatively low.
 
+c.Make a two-panel plot showing (i) tmax vs tmin for the full dataset; and (ii) make a plot showing the distribution of snowfall values greater than 0 and less than 100 separately by year.
+```{r include= FALSE}
+knitr::opts_chunk$set(
+  fig.width = 15,
+  fig.height = 20, 
+  out.width = "90%"
+)
+```
 
+```{r temperature_snow_plot}
+tmax_tmin = 
+  ggplot(ny_clean, aes(x = tmin, y = tmax)) + 
+    geom_hex() + 
+    labs(
+       title = "Temperature plot",
+       x = "Minimum temperature (C)",
+       y = "Maxiumum temperature (C)"
+    ) +
+    theme(legend.key.height = unit(0.2, "in"), 
+          legend.key.width = unit(0.5, "in")) 
 
+snow_plot = 
+  ny_clean %>%
+  filter(snow > 0 & snow < 100) %>% 
+  ggplot(aes(x = snow, color = year)) + 
+    geom_density(alpha = .4, adjust = .5) + 
+    viridis::scale_color_viridis(
+      name = "Year",
+      discrete = TRUE
+    ) +
+    labs(
+       title = "Distribution of snowfall",
+       x = "Snowfall (mm)",
+       y = "Density"
+    ) 
+
+tmax_tmin / snow_plot
+```
+
+The hexagon density plot shows that there is a positive correlation between the maximum temperature and minimum temperature, the higher the tmin, the higher the tmax. The most frequently observed tmax range between 0 to 30 degrees (C), and the most frequently observed tmin range between -15 to 20 degrees (C). Besides, in the plot area where the highest density of observations occur, the tmax and tmin seem to have a positive linear relationship.
+
+The density plot shows the distribution of snowfall values greater than 0 and less than 100 across 30 years. From the plot, the distribution of snowfall is relatively stable across the 30 years, while there has been slightly less snowfall since 2005. It can be observed that there are peaks in density around 15, 25, 50, and 75 mm. Besides, the heights of these peaks has decreased over years and there is a peak around 5 mm formed mainly by data of years 2005 to 2010, which implies the snowfall declined over years maybe because of climate change.
