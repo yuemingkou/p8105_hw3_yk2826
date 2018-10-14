@@ -195,3 +195,38 @@ instacart %>%
 The above table shows that Coffee Ice Cream is usually order in the early afternoon at around 2pm to 3pm for every day of the week except for Friday when the ice cream is ordered earlier. Customers order pink lady apples, on average, ealiear than order Coffee Ice Cream, mostly around noon between 11am to 2pm for every day of the week except Wednesday.
 
 ## Problem 3
+load ny_noaa data
+```{r load_noaa}
+data(ny_noaa)
+head(ny_noaa)
+
+ny_noaa %>% 
+  filter(is.na(prcp) | is.na(snow) | is.na(snwd) | is.na(tmax) | is.na(tmin)) %>% 
+  nrow()
+ny_noaa %>% 
+  filter(is.na(prcp) & is.na(snow) & is.na(snwd) & is.na(tmax) & is.na(tmin)) %>% 
+  nrow()
+NA_prcp = 
+  ny_noaa %>% filter(is.na(prcp)) %>% nrow()
+NA_prcp / nrow(ny_noaa)
+NA_tmax = ny_noaa %>% filter(is.na(tmax)) %>% nrow()
+NA_tmax / nrow(ny_noaa)
+NA_tmin = ny_noaa %>% filter(is.na(tmin)) %>% nrow()
+NA_tmin / nrow(ny_noaa)
+NA_snow = ny_noaa %>% filter(is.na(snow)) %>% nrow()
+NA_snow / nrow(ny_noaa)
+NA_snwd = ny_noaa %>% filter(is.na(snwd)) %>% nrow()
+NA_snwd / nrow(ny_noaa)
+```
+
+The "NOAA"ny_noaa" dataset contains weather information of all New York state weather stations from January 1, 1981 through December 31, 2010. The dataset has `r nrow(ny_noaa)` observations and 7 variables. Each observation contains weather data collected from one of the weather stations on one day.  
+The meaning of the 7 variables are as follow: 
+id: Weather station ID  
+date: Date of observation  
+prcp: Precipitation (tenths of mm)  
+snow: Snowfall (mm)  
+snwd: Snow depth (mm)  
+tmax: Maximum temperature (tenths of degrees C)  
+tmin: Minimum temperature (tenths of degrees C)  
+Observations for temperature, precipitation and snowfall will be converted to proper units for interpretation.  
+Each weather station may collect only a subset of these variables, and therefore the resulting dataset contains extensive missing data. Of all observations, 1372743 contain at least one missing value. In addition, 72278 have missing values for all five key variables. There are `r ny_noaa %>% filter(is.na(prcp)) %>% nrow()` (5.62%) missing values for precipitation and `r ny_noaa %>% filter(is.na(tmax)) %>% nrow()` (43.71%) missing values for tmax and `r ny_noaa %>% filter(is.na(tmin)) %>% nrow()` (43.71%) missing values for tmin. Also, there are `r ny_noaa %>% filter(is.na(snow)) %>% nrow()` (14.69%) missing values for snowfall and `r ny_noaa %>% filter(is.na(snwd)) %>% nrow()` (22.80%) missing values for snow depth. A large extent of the data are missing and this might be an issue in the analysis and interpretation of this dataset.
