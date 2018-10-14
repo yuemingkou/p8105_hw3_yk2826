@@ -39,3 +39,25 @@ brfss_data %>%
   filter(year == 2002, n_location == 7)
 ```
 From the result, we can see in 2002, CT, FL and NC were observed at 7 locations.
+
+b.Make a “spaghetti plot” that shows the number of locations in each state from 2002 to 2010.
+```{r spaghetti_plot}
+brfss_data %>% 
+  group_by(year, state) %>%
+  summarize(n_location = n_distinct(location)) %>% 
+  ggplot(aes(x = year, y = n_location, color = state)) + 
+    geom_line() + 
+    labs(
+      title = "Number of locations plot",
+      x = "Year",
+      y = "The number of locations in each state"
+    ) +
+  scale_color_hue(
+    name = "State",
+    h = c(100, 350),
+    l = 75
+  ) +
+  theme(legend.position = "right")
+```
+
+I used "geom_line()" to make the "spaghetti plot" to show the trends in the number of locations across 50 states and the District of Columbia over years. The x axis shows the year from 2002 to 2010, and the y axis shows the number of locations in each state in each year. States are differentiated by different colors. The number of locations did not change much over years in most states except Florida. Florida had more than 40 locations in year 2007 and 2010, while the number of locations in all states in other years were less than 20.
