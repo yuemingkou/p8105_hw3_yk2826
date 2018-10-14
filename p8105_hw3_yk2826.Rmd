@@ -38,4 +38,4 @@ brfss_data %>%
   summarize(n_location = n_distinct(location)) %>% 
   filter(year == 2002, n_location == 7)
 ```
-
+From the result, we can see in 2002, CT, FL and NC were observed at 7 locations.
