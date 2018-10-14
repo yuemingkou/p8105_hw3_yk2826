@@ -94,3 +94,5 @@ response_average %>%
 ```
 
 I used line plots because they are the most appropriate to show the trends of distribution of the average proportion in each state over time. We can see from the plots that for all states the state-level average proportions in "Very good" were the highest while the state-level average proportions in "Poor" were the lowest from 2002 to 2010. Besides, the distributions of these state-level averages for each category remains relatively constant over years, which implies that responses did not vary apparently over time.
+
+## Problem 2
